@@ -402,7 +402,7 @@
                 }
 
                 var accueil_choice = document.getElementById("accueil_choice");
-                setComboValue("accueil_choice", [1,2,7]);
+//                setComboValue("accueil_choice", [1,2,7]);
             }
         }
 
