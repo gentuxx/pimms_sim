@@ -29,47 +29,55 @@
         var divTwo = document.getElementById("div_two");
         var combobox = document.createElement("select");
 
-        combobox.options[0] = new Option("-------------- Pré-accueil --------------");
-        combobox.options[0].disabled = true;
+        var optPreaccueil = new Option("-------------- Pré-accueil --------------");
+        optPreaccueil.disabled = true;
 
-        combobox.options[1] = new Option("Appel téléphonique (matin)", "Appel téléphonique (matin)");
-        combobox.options[2] = new Option("Appel téléphonique (après-midi)", "Appel téléphonique (après-midi)");
-        combobox.options[3] = new Option("Poste en libre service (matin)", "Poste en libre service (matin)");
-        combobox.options[4] = new Option("Poste en libre service (après-midi)", "Poste en libre service (après-midi)");
+        combobox.add(optPreaccueil);
 
-        combobox.options[5] = new Option("-------------- Sur rendez-vous le matin --------------");
-        combobox.options[5].disabled = true;
+        combobox.add(new Option("Appel téléphonique (matin)", "Appel téléphonique (matin)"));
+        combobox.add(new Option("Appel téléphonique (après-midi)", "Appel téléphonique (après-midi)"));
+        combobox.add(new Option("Poste en libre service (matin)", "Poste en libre service (matin)"));
+        combobox.add(new Option("Poste en libre service (après-midi)", "Poste en libre service (après-midi)"));
 
-        combobox.options[6] = new Option("Retraite - Demande de retraite", "Retraite - Demande de retraite");
-        combobox.options[7] = new Option("Retraite - Demande de réversion", "Retraite - Demande de réversion");
-        combobox.options[8] = new Option("Retraite - Demande d'ASPA", "Retraite - Demande d'ASPA");
-        combobox.options[9] = new Option("MDPH - Dossier MDPH", "MDPH - Dossier MDPH");
-        combobox.options[10] = new Option("France Travail - Inscription", "France Travail - Inscription");
-        combobox.options[11] = new Option("Logement social : 1ère demande", "Logement social : 1ère demande");
+        var optOnMorningAppointment = new Option("-------------- Sur rendez-vous le matin --------------");
+        optOnMorningAppointment.disabled = true;
 
-        combobox.options[12] = new Option("-------------- Sans rendez-vous l'après-midi --------------");
-        combobox.options[12].disabled = true;
+        combobox.add(optOnMorningAppointment);
 
-        combobox.options[13] = new Option("CAF - Déclaration des ressources", "CAF - Déclaration des ressources");
-        combobox.options[14] = new Option("CAF - Réaliser une demande de RSA", "CAF - Réaliser une demande de RSA");
-        combobox.options[15] = new Option("Comptes publics - Compléter une déclaration des revenus", "Comptes publics - Compléter une déclaration des revenus");
-        combobox.options[16] = new Option("MSA", "MSA");
-        combobox.options[17] = new Option("La Poste", "La Poste");
-        combobox.options[18] = new Option("CPAM : Demande de CSS", "CPAM : Demande de CSS");
-        combobox.options[19] = new Option("CPAM : Demande de carte vitale", "CPAM : Demande de carte vitale");
-        combobox.options[20] = new Option("Justice : Extrait de casier judiciaire", "Justice : Extrait de casier judiciaire");
-        combobox.options[21] = new Option("ANTS : Pré-demande CNI / Passeport", "ANTS : Pré-demande CNI / Passeport");
-        combobox.options[22] = new Option("ANTS : Demande de permis de conduire", "ANTS : Demande de permis de conduire");
-        combobox.options[23] = new Option("ANTS : Demande de RDV visite médicale de la préfecture", "ANTS : Demande de RDV visite médicale de la préfecture");
-        combobox.options[24] = new Option("ANTS : Déclarer une cession de véhicule", "ANTS : Déclarer une cession de véhicule");
-        combobox.options[25] = new Option("ANTS : Déclarer un achat de véhicule", "ANTS : Déclarer un achat de véhicule");
-        combobox.options[26] = new Option("ANTS : Modifier une carte grise", "ANTS : Modifier une carte grise");
-        combobox.options[27] = new Option("ANTS : Payer ou contester une amende", "ANTS : Payer ou contester une amende");
-        combobox.options[28] = new Option("France Travail : Actualisation mensuelle", "France Travail : Actualisation mensuelle");
-        combobox.options[29] = new Option("Logement social : Renouvellement", "Logement social : Renouvellement");
-        combobox.options[30] = new Option("Ministère de l'écologie et des territoires", "Ministère de l'écologie et des territoires");
-        combobox.options[31] = new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance");
-        combobox.options[32] = new Option("ANAH : Agence Nationale de l'Habitat", "ANAH : Agence Nationale de l'Habitat");
+        combobox.add(new Option("France Travail - Inscription", "France Travail - Inscription"));
+        combobox.add(new Option("Logement social : 1ère demande", "Logement social : 1ère demande"));
+        combobox.add(new Option("MDPH - Dossier MDPH", "MDPH - Dossier MDPH"));
+        combobox.add(new Option("PCB (Point Conseil Budget)", "PCB (Point Conseil Budget)"));
+        combobox.add(new Option("Retraite - Demande d'ASPA", "Retraite - Demande d'ASPA"));
+        combobox.add(new Option("Retraite - Demande de retraite", "Retraite - Demande de retraite"));
+        combobox.add(new Option("Retraite - Demande de réversion", "Retraite - Demande de réversion"));
+
+        var optAfternoonWithoutAppointment = new Option("-------------- Sans rendez-vous l'après-midi --------------");
+        optAfternoonWithoutAppointment.disabled = true;
+
+        combobox.add(optAfternoonWithoutAppointment);
+
+        combobox.add(new Option("Autre", "Autre"));
+        combobox.add(new Option("ANAH : Agence Nationale de l'Habitat", "ANAH : Agence Nationale de l'Habitat"));
+        combobox.add(new Option("ANTS : Déclarer une cession de véhicule", "ANTS : Déclarer une cession de véhicule"));
+        combobox.add(new Option("ANTS : Déclarer un achat de véhicule", "ANTS : Déclarer un achat de véhicule"));
+        combobox.add(new Option("ANTS : Demande de permis de conduire", "ANTS : Demande de permis de conduire"));
+        combobox.add(new Option("ANTS : Demande de RDV visite médicale de la préfecture", "ANTS : Demande de RDV visite médicale de la préfecture"));
+        combobox.add(new Option("ANTS : Modifier une carte grise", "ANTS : Modifier une carte grise"));
+        combobox.add(new Option("ANTS : Payer ou contester une amende", "ANTS : Payer ou contester une amende"));
+        combobox.add(new Option("ANTS : Pré-demande CNI / Passeport", "ANTS : Pré-demande CNI / Passeport"));
+        combobox.add(new Option("CAF - Déclaration des ressources", "CAF - Déclaration des ressources"));
+        combobox.add(new Option("CAF - Réaliser une demande de RSA", "CAF - Réaliser une demande de RSA"));
+        combobox.add(new Option("CPAM : Demande de CSS", "CPAM : Demande de CSS"));
+        combobox.add(new Option("CPAM : Demande de carte vitale", "CPAM : Demande de carte vitale"));
+        combobox.add(new Option("DGFIP - Compléter une déclaration des revenus", "DGFIP - Compléter une déclaration des revenus"));
+        combobox.add(new Option("France Travail : Actualisation mensuelle", "France Travail : Actualisation mensuelle"));
+        combobox.add(new Option("Justice : Extrait de casier judiciaire", "Justice : Extrait de casier judiciaire"));
+        combobox.add(new Option("La Poste", "La Poste"));
+        combobox.add(new Option("Logement social : Renouvellement", "Logement social : Renouvellement"));
+        combobox.add(new Option("Ministère de l'écologie et des territoires", "Ministère de l'écologie et des territoires"));
+        combobox.add(new Option("MSA", "MSA"));
+        combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
 
         Array.from(combobox.options).forEach((element) => (element.onclick = loadValues));
 
@@ -98,7 +106,8 @@
             || comboboxValue == "Retraite - Demande d'ASPA"
             || comboboxValue == "MDPH - Dossier MDPH"
             || comboboxValue == "France Travail - Inscription"
-            || comboboxValue == "Logement social : 1ère demande";
+            || comboboxValue == "Logement social : 1ère demande"
+            || comboboxValue == "PCB (Point Conseil Budget)";
 
             if (event.target == document.getElementById("fp-default")) {
                 if (bMorning) {
@@ -218,7 +227,7 @@
                     setComboValue("operator_id", 258);
                     setComboValue("operator_action_id", 852);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Retraite - Demande de réversion") {
 
@@ -234,7 +243,7 @@
                     setComboValue("operator_id", 258);
                     setComboValue("operator_action_id", 848);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Retraite - Demande d'ASPA") {
 
@@ -250,7 +259,7 @@
                     setComboValue("operator_id", 258);
                     setComboValue("operator_action_id", 851);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "MDPH - Dossier MDPH") {
 
@@ -262,7 +271,7 @@
                     setComboValue("operator_id", 280);
                     setComboValue("operator_action_id", 927);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "France Travail - Inscription") {
 
@@ -278,7 +287,7 @@
                     setComboValue("operator_id", 56);
                     setComboValue("operator_action_id", 169);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Logement social : 1ère demande") {
 
@@ -290,7 +299,21 @@
                     setComboValue("operator_id", 205);
                     setComboValue("operator_action_id", 729);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
+
+                } else if (comboboxValue == "PCB (Point Conseil Budget)") {
+
+                    setComboValue("contact-channel", 2);
+
+                    document.getElementById("check_france_service").checked = true;
+                    document.getElementById("check_france_service").click();
+
+                    setComboValue("select_pcb_job_actions", 5);
+
+                    setComboValue("operator_id", 98);
+                    setComboValue("operator_action_id", 471);
+
+                    setComboValue("accueil_choice", [1,3,4]);
 
                     //--------------------------- Afternoon ---------------------------//
                 } else if (comboboxValue == "CAF - Déclaration des ressources") {
@@ -305,7 +328,7 @@
                     setComboValue("operator_id", 260);
                     setComboValue("operator_action_id", 870);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "CAF - Réaliser une demande de RSA") {
 
@@ -319,9 +342,9 @@
                     setComboValue("operator_id", 260);
                     setComboValue("operator_action_id", 872);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
-                } else if (comboboxValue == "Comptes publics - Compléter une déclaration des revenus") {
+                } else if (comboboxValue == "DGFIP - Compléter une déclaration des revenus") {
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
@@ -333,7 +356,7 @@
                     setComboValue("operator_id", 100);
                     setComboValue("operator_action_id", 488);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "MSA") {
 
@@ -343,7 +366,7 @@
 
                     checkRadioButton("Partner3");
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "La Poste") {
 
@@ -353,7 +376,7 @@
 
                     checkRadioButton("Partner4");
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "CPAM : Demande de CSS") {
 
@@ -367,7 +390,7 @@
                     setComboValue("operator_id", 241);
                     setComboValue("operator_action_id", 1527);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "CPAM : Demande de carte vitale") {
 
@@ -381,7 +404,7 @@
                     setComboValue("operator_id", 241);
                     setComboValue("operator_action_id", 806);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Justice : Extrait de casier judiciaire") {
 
@@ -395,7 +418,7 @@
                     setComboValue("operator_id", 5);
                     setComboValue("operator_action_id", 1941);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Pré-demande CNI / Passeport") {
 
@@ -409,7 +432,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 1913);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Demande de permis de conduire") {
 
@@ -423,7 +446,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 1808);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Demande de RDV visite médicale de la préfecture") {
 
@@ -437,7 +460,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 73);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Déclarer une cession de véhicule") {
 
@@ -451,7 +474,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 52);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Déclarer un achat de véhicule") {
 
@@ -465,7 +488,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 54);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Modifier une carte grise") {
 
@@ -479,7 +502,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 61);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANTS : Payer ou contester une amende") {
 
@@ -493,7 +516,7 @@
                     setComboValue("operator_id", 9);
                     setComboValue("operator_action_id", 71);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "France Travail : Actualisation mensuelle") {
 
@@ -507,7 +530,7 @@
                     setComboValue("operator_id", 56);
                     setComboValue("operator_action_id", 167);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Logement social : Renouvellement") {
 
@@ -517,7 +540,7 @@
                     setComboValue("operator_id", 205);
                     setComboValue("operator_action_id", 735);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Ministère de l'écologie et des territoires") {
 
@@ -528,7 +551,7 @@
 
                     setComboValue("operator_id", 6);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "Service public : Demande extrait d'acte de naissance") {
 
@@ -538,7 +561,17 @@
                     setComboValue("operator_id", 1);
                     setComboValue("operator_action_id", 2);
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
+
+                } else if (comboboxValue == "Autre") {
+
+                    document.getElementById("check_france_service").checked = true;
+                    document.getElementById("check_france_service").click();
+
+                    setComboValue("operator_id", 10);
+                    setComboValue("operator_action_id", 79);
+
+                    setComboValue("accueil_choice", [1,4,7]);
 
                 } else if (comboboxValue == "ANAH : Agence Nationale de l'Habitat") {
 
@@ -547,7 +580,7 @@
 
                     checkRadioButton("Partner11");
 
-                    setComboValue("accueil_choice", [1,2,7]);
+                    setComboValue("accueil_choice", [1,4,7]);
                 }
             }
         }
@@ -631,6 +664,10 @@
         uncheckRadioButton("Partner9");
         uncheckRadioButton("Partner10");
         uncheckRadioButton("Partner11");
+        setComboValue("select_pcb_reception_types", "");
+        setComboValue("select_pcb_job_actions", "");
+        setComboValue("operator_id", 10);
+        setComboValue("operator_action_id", 79);
         setComboValue("accueil_choice", []);
     }
 
