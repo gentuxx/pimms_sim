@@ -12,7 +12,7 @@
 (function() {
     "use strict";
 
-    var name = document.getElementsByClassName("user-name")[0].outerText
+    var name = document.getElementsByClassName("user-name")[0].outerText.toUpperCase();
     var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA");
 
     if (!bName) {
