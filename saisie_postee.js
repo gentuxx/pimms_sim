@@ -12,6 +12,13 @@
 (function() {
     "use strict";
 
+    var name = document.getElementsByClassName("user-name")[0].outerText
+    var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA");
+
+    if (!bName) {
+        return;
+    }
+
     if (document.getElementById("structure_selected").textContent.trim() == "Narbonne")
     {
         const demoClasses = document.querySelectorAll(".bs-stepper-content");
