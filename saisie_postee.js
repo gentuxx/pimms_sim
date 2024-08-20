@@ -76,6 +76,12 @@
         document.getElementsByName("activity_status_id")[0].setAttribute("id", "id_activity_status");
         document.querySelector("input[name=zipcode]").setAttribute("id", "id_zipcode");
 
+        var alreadyCameYes = document.getElementById("VisiteRadio13");
+        var alreadyCameNo = document.getElementById("VisiteRadio14");
+
+        alreadyCameYes.addEventListener("change", (event) => {changeKnowledgeYes();});
+        alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
+
         function loadValues(event) {
 
             resetValues();
@@ -571,6 +577,14 @@
             combobox.selectedIndex = 1;
             combobox.dispatchEvent(new Event("change"));
         }
+    }
+
+    function changeKnowledgeYes() {
+        setComboValue("pimms_knowledge", 5);
+    }
+
+    function changeKnowledgeNo() {
+        setComboValue("pimms_knowledge", 13);
     }
 
     function resetValues() {
