@@ -13,7 +13,7 @@
     "use strict";
 
     var name = document.getElementsByClassName("user-name")[0].outerText.toUpperCase();
-    var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA") || name.includes("TEDDY");
+    var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA");
 
     if (!bName) {
         return;
@@ -131,7 +131,12 @@
                 checkRadioButton("LangueRadio1");
                 checkRadioButton("CountryRadio1");
 
+                setComboValue("district", 9249);
+
                 checkRadioButton("VisiteRadio14");
+
+                setComboValue("pimms_knowledge", 13);
+
                 checkRadioButton("qpvRadio15");
 
                 setComboValue("id_activity_status", 4);
