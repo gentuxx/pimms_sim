@@ -129,7 +129,7 @@
 
                 setComboValue("id_activity_status", 4);
 
-                // Reception
+                //--------------------------- Reception ---------------------------//
                 if (comboboxValue == "Appel téléphonique (matin)") {
 
                     checkRadioButton("DurationRadio1");
