@@ -118,7 +118,7 @@
 
                 document.querySelector("input[name=zipcode]").dispatchEvent(enterEvent);
 
-                setComboValue("contact-channel", 2);
+                setComboValue("contact-channel", 5);
                 checkRadioButton("SexRadio1");
                 setComboValue("user_age", 12);
                 checkRadioButton("LangueRadio1");
@@ -194,6 +194,8 @@
                     //--------------------------- Morning ---------------------------//
                 } else if (comboboxValue == "Retraite - Demande de retraite") {
 
+                    setComboValue("contact-channel", 2);
+
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
 
@@ -207,6 +209,8 @@
                     setComboValue("accueil_choice", [1,2,7]);
 
                 } else if (comboboxValue == "Retraite - Demande de réversion") {
+
+                    setComboValue("contact-channel", 2);
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
@@ -222,6 +226,8 @@
 
                 } else if (comboboxValue == "Retraite - Demande d'ASPA") {
 
+                    setComboValue("contact-channel", 2);
+
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
 
@@ -236,6 +242,8 @@
 
                 } else if (comboboxValue == "MDPH - Dossier MDPH") {
 
+                    setComboValue("contact-channel", 2);
+
                     document.getElementById("check_france_service").checked = true;
                     document.getElementById("check_france_service").click();
 
@@ -245,6 +253,8 @@
                     setComboValue("accueil_choice", [1,2,7]);
 
                 } else if (comboboxValue == "France Travail - Inscription") {
+
+                    setComboValue("contact-channel", 2);
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
@@ -259,6 +269,8 @@
                     setComboValue("accueil_choice", [1,2,7]);
 
                 } else if (comboboxValue == "Logement social : 1ère demande") {
+
+                    setComboValue("contact-channel", 2);
 
                     document.getElementById("check_france_service").checked = true;
                     document.getElementById("check_france_service").click();
