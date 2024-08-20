@@ -550,6 +550,9 @@
     }
 
     function resetValues() {
+
+        var accueil_choice = document.getElementById("accueil_choice");
+
         uncheckRadioButton("DurationRadio1");
         uncheckRadioButton("DurationRadio2");
         uncheckRadioButton("DurationRadio3");
@@ -589,8 +592,8 @@
         uncheckRadioButton("Partner8");
         uncheckRadioButton("Partner9");
         uncheckRadioButton("Partner10");
-        uncheckRadioButton("Partner11");/*
-        setComboValue(document.getElementById("accueil_choice"), []);*/
+        uncheckRadioButton("Partner11");
+        setComboValue("accueil_choice", []);
     }
 
     function setComboValue(name, value) {
