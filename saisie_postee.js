@@ -76,12 +76,6 @@
         document.getElementsByName("activity_status_id")[0].setAttribute("id", "id_activity_status");
         document.querySelector("input[name=zipcode]").setAttribute("id", "id_zipcode");
 
-        var alreadyCameYes = document.getElementById("VisiteRadio13");
-        var alreadyCameNo = document.getElementById("VisiteRadio14");
-
-        alreadyCameYes.addEventListener("change", (event) => {changeKnowledgeYes();});
-        alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
-
         function loadValues(event) {
 
             resetValues();
@@ -573,6 +567,12 @@
 
             var elementDp = document.querySelector(".form-control.flatpickr-basic.change_date");
             elementDp.addEventListener("change", (event) => {loadValues(event);setTime(event);});
+
+            var alreadyCameYes = document.getElementById("VisiteRadio13");
+            var alreadyCameNo = document.getElementById("VisiteRadio14");
+
+            alreadyCameYes.addEventListener("change", (event) => {changeKnowledgeYes();});
+            alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
 
             combobox.selectedIndex = 1;
             combobox.dispatchEvent(new Event("change"));
