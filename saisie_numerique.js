@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Numerique
+// @name         saisie_numerique
 // @namespace    http://tampermonkey.net/
 // @version      2024-08-09
 // @description  Add a selection to fill the form faster
@@ -17,7 +17,7 @@
         const demoClasses = document.querySelectorAll('.card-title');
 
         var divEl = demoClasses[0];
-        divEl.insertAdjacentHTML('afterend', '<div id="div_two"></div>');
+        divEl.insertAdjacentHTML('afterbegin', '<div id="div_two" style="margin-bottom: 15px" align="left"></div>');
 
         var divTwo = document.getElementById("div_two");
         var combobox = document.createElement("select");
