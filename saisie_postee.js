@@ -19,7 +19,9 @@
         return;
     }
 
-    if (document.getElementById("structure_selected").textContent.trim() == "Narbonne")
+    const structure = document.getElementById("structure_selected").textContent.trim();
+
+    if (structure == "Narbonne" || structure == "Sigean Corbières Méditerranée")
     {
         const demoClasses = document.querySelectorAll(".bs-stepper-content");
 
@@ -123,7 +125,14 @@
                     checkRadioButton("DurationRadio4");
                     checkRadioButton("TimeSlotEvening");
                 }
-                document.getElementById("id_zipcode").value = 11100;
+
+                const structure = document.getElementById("structure_selected").textContent.trim();
+
+                if (structure == "Narbonne") {
+                    document.getElementById("id_zipcode").value = 11100;
+                } else if (structure == "Sigean Corbières Méditerranée") {
+                    document.getElementById("id_zipcode").value = 11130;
+                }
 
                 let enterEvent = new KeyboardEvent("keyup", {
                     key: "Enter",
@@ -704,6 +713,7 @@
 
                         var lastValue;
                         var containsNarbonne = false;
+                        var containsSigean = false;
 
                         $("#city").empty(), e.forEach((function(e) {
                             $("#city").append('<option value="' + e.name + '">' + e.name + "</option>");
@@ -711,10 +721,15 @@
                             if (e.name == "Narbonne") {
                                 containsNarbonne = true;
                             }
+                            if (e.name == "Sigean") {
+                                containsSigean = true;
+                            }
                         })), $("#city").closest(".error").removeClass("error"), $("#city-error").remove(), $("#count_notifs").html(e.length);
 
                         if (containsNarbonne) {
                             setComboValue("city", "Narbonne");
+                        } else if (containsSigean) {
+                            setComboValue("city", "Sigean");
                         } else {
                             setComboValue("city", lastValue);
                         }
