@@ -75,7 +75,7 @@
         combobox.add(new Option("Justice : Extrait de casier judiciaire", "Justice : Extrait de casier judiciaire"));
         combobox.add(new Option("La Poste", "La Poste"));
         combobox.add(new Option("Logement social : Renouvellement", "Logement social : Renouvellement"));
-        combobox.add(new Option("Ministère de l'écologie et des territoires", "Ministère de l'écologie et des territoires"));
+        combobox.add(new Option("Ministère de l'écologie et des territoires : Chèque énergie", "Ministère de l'écologie et des territoires : Chèque énergie"));
         combobox.add(new Option("MSA", "MSA"));
         combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
 
@@ -542,14 +542,18 @@
 
                     setComboValue("accueil_choice", [1,4,7]);
 
-                } else if (comboboxValue == "Ministère de l'écologie et des territoires") {
+                } else if (comboboxValue == "Ministère de l'écologie et des territoires : Chèque énergie") {
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
 
                     checkRadioButton("Partner10");
 
-                    setComboValue("operator_id", 6);
+                    setComboValue("fs_theme_id", 76);
+                    setComboValue("fs_accompaniment_id", 354);
+
+                    setComboValue("operator_id", 333);
+                    setComboValue("operator_action_id", 1774);
 
                     setComboValue("accueil_choice", [1,4,7]);
 
