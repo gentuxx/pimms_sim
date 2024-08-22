@@ -12,13 +12,6 @@
 (function() {
     "use strict";
 
-    var name = document.getElementsByClassName("user-name")[0].outerText.toUpperCase();
-    var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA") || name.includes("TEDDY");
-
-    if (!bName) {
-        return;
-    }
-
     const structure = document.getElementById("structure_selected").textContent.trim();
 
     if (structure == "Narbonne" || structure == "Sigean Corbières Méditerranée")
