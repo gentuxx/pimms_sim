@@ -24,15 +24,15 @@
         var divTwo = document.getElementById("div_two");
         var combobox = document.createElement("select");
 
-        combobox.options[0] = new Option('Séance 1h30', 'Séance 1h30');
-        combobox.options[1] = new Option('Pré-séance', 'Pré-séance');
-        combobox.options[2] = new Option('Collectif', 'Collectif');
+        combobox.options[0] = new Option("5 étoiles", "5 étoiles");
 
         Array.from(combobox.options).forEach((element) => (element.onclick = loadValues));
 
-/*
         function loadValues() {
-            if (combobox.value.trim() == 'Séance 1h30') {
+
+            if (combobox.value.trim() == "5 étoiles") {
+
+                /*
                 document.querySelector("#name").value = "INDIVIDUEL";
                 document.querySelector("#place").value = "NARBONNE";
                 document.querySelector("#nb_duration_hour").value = 90;
@@ -44,37 +44,19 @@
 
                 $("#operator_action_id").val(1393);
                 $("#operator_action_id").change();
-            }
-            else if (combobox.value.trim() == 'Pré-séance') {
-                document.querySelector("#name").value = "PRE-SEANCE";
-                document.querySelector("#place").value = "NARBONNE";
-                document.querySelector("#nb_duration_hour").value = 45;
-                document.querySelector("#nb_mediator").value = 1;
-                document.querySelector("#nb_attendee").value = 1;
+                */
 
-                $("#operator_id").val(293);
-                $("#operator_id").change();
-
-                $("#operator_action_id").val(1451);
-                $("#operator_action_id").change();
-            }
-            else if (combobox.value.trim() == 'Collectif') {
-                document.querySelector("#name").value = "COLLECTIF";
-                document.querySelector("#place").value = "NARBONNE";
-                document.querySelector("#nb_duration_hour").value = 120;
-                document.querySelector("#nb_mediator").value = 1;
-                document.querySelector("#nb_attendee").value = 5;
-
-                $("#operator_id").val(293);
-                $("#operator_id").change();
-
-                $("#operator_action_id").val(1451);
-                $("#operator_action_id").change();
+                checkRadioButton("q0_rate5");
+                checkRadioButton("q1_rate5");
+                checkRadioButton("q2_rate5");
+                checkRadioButton("q3_rate5");
+                checkRadioButton("q4_rate5");
             }
         }
 
         divTwo.appendChild(combobox);
 
+        /*
         document.querySelector("#name").value = "INDIVIDUEL";
         document.querySelector("#place").value = "NARBONNE";
         document.querySelector("#nb_duration_hour").value = 90;
@@ -85,6 +67,11 @@
         $("#operator_id").change();
 
         $("#operator_action_id").val(1393);
-        $("#operator_action_id").change();
-    }*/
+        $("#operator_action_id").change();*/
+    }
+
+    function checkRadioButton(name) {
+        document.getElementById(name).checked = true;
+        document.getElementById(name).click();
+    }
 })();
