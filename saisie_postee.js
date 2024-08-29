@@ -71,8 +71,10 @@
         combobox.add(new Option("La Poste", "La Poste"));
         combobox.add(new Option("Logement social : Renouvellement", "Logement social : Renouvellement"));
         combobox.add(new Option("Ministère de l'écologie et des territoires : Chèque énergie", "Ministère de l'écologie et des territoires : Chèque énergie"));
+        combobox.add(new Option("Ministère de l'intérieur : Remboursement d'un timbre fiscal", "Ministère de l'intérieur : Remboursement d'un timbre fiscal"));
         combobox.add(new Option("MSA", "MSA"));
         combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
+        combobox.add(new Option("SNCF : Solidario", "SNCF : Solidario"));
 
         Array.from(combobox.options).forEach((element) => (element.onclick = loadValues));
 
@@ -559,6 +561,21 @@
 
                     setComboValue("accueil_choice", [1,4,7]);
 
+                } else if (comboboxValue == "Ministère de l'intérieur : Remboursement d'un timbre fiscal") {
+
+                    document.getElementById("check_france_service").checked = false;
+                    document.getElementById("check_france_service").click();
+
+                    checkRadioButton("Partner8");
+
+                    setComboValue("fs_theme_id", 90);
+                    setComboValue("fs_accompaniment_id", 396);
+
+                    setComboValue("operator_id", 9);
+                    setComboValue("operator_action_id", 1405);
+
+                    setComboValue("accueil_choice", [1,4,7]);
+
                 } else if (comboboxValue == "Service public : Demande extrait d'acte de naissance") {
 
                     document.getElementById("check_france_service").checked = true;
@@ -566,6 +583,16 @@
 
                     setComboValue("operator_id", 1);
                     setComboValue("operator_action_id", 2);
+
+                    setComboValue("accueil_choice", [1,4,7]);
+
+                } else if (comboboxValue == "SNCF : Solidario") {
+
+                    document.getElementById("check_france_service").checked = true;
+                    document.getElementById("check_france_service").click();
+
+                    setComboValue("operator_id", 120);
+                    setComboValue("operator_action_id", 546);
 
                     setComboValue("accueil_choice", [1,4,7]);
 
