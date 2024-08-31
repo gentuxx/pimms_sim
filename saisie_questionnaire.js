@@ -21,7 +21,7 @@
 
     var MAX_VALUES_TO_ENTER = 5;
     var MIN_TIME = 15;
-    var MAX_TIME = 30;
+    var MAX_TIME = 25;
 
     var index = 0;
 
@@ -52,19 +52,18 @@
 
             clearInterval(interval);
 
+            if (index >= MAX_VALUES_TO_ENTER) {
+                return;
+            }
+
             var rand = getRandomInt(MIN_TIME, MAX_TIME);
 
             loadValues();
             buttonSave.click();
 
-            interval = setInterval(setDelay, rand * 1000);
-
             ++index;
 
-            if (index >= MAX_VALUES_TO_ENTER) {
-                clearInterval(interval);
-                return;
-            }
+            interval = setInterval(setDelay, rand * 1000);
         }
 
         function getRandomInt(min, max) {
