@@ -36,15 +36,59 @@
         buttonSave.addEventListener("click", (event) => {loadValues()});
 
         var divEl = demoClasses[0];
-        divEl.insertAdjacentHTML('afterbegin', '<div id="div_two" style="margin-bottom: 15px" align="left"></div>');
+        divEl.insertAdjacentHTML('afterbegin', '<div id="div_two" style="margin-bottom: 15px"></div>');
 
         var divTwo = document.getElementById("div_two");
+
+        var textNumberOccurences = document.createElement("label");
+        textNumberOccurences.setAttribute("id", "textNumberOccurences");
+        textNumberOccurences.style.width = "180px";
+        textNumberOccurences.style.marginBottom = "10px";
+
+        var inputNumberOccurences = document.createElement("input");
+        inputNumberOccurences.setAttribute("id", "inputNumberOccurences");
+        inputNumberOccurences.setAttribute("type", "number");
+        inputNumberOccurences.value = 8;
+
+        var textMinimalTime = document.createElement("label");
+        textMinimalTime.setAttribute("id", "textMinimalTime");
+        textMinimalTime.style.width = "180px";
+        textMinimalTime.style.marginBottom = "10px";
+
+        var inputMinimalTime = document.createElement("input");
+        inputMinimalTime.setAttribute("id", "inputMinimalTime");
+        inputMinimalTime.setAttribute("type", "number");
+        inputMinimalTime.value = 15;
+
+        var textMaximalTime = document.createElement("label");
+        textMaximalTime.setAttribute("id", "textMaximalTime");
+        textMaximalTime.style.width = "180px";
+        textMaximalTime.style.marginBottom = "15px";
+
+        var inputMaximalTime = document.createElement("input");
+        inputMaximalTime.setAttribute("id", "inputMaximalTime");
+        inputMaximalTime.setAttribute("type", "number");
+        inputMaximalTime.value = 25;
+
         var myButton = document.createElement("button");
-        myButton.innerHTML = "Automatisation";
+        myButton.classList.add("btn", "btn-primary", "btn-submit", "me-1", "waves-effect", "waves-float", "waves-light");
+
+        //var id = 1;
+        //myButton.innerHTML = "Cols: <input type='text' id='colsTextArea' maxlength='3' /><br>Rows: <input type='text' id='rowsTextArea' maxlength='2' /><br><button type='button' onclick=\"updateTextArea(\'" + id + "\')\" >Add</button><br>";
+        textNumberOccurences.innerHTML = "Nombre d'occurences";
+        textMinimalTime.innerHTML = "Temps minimal";
+        textMaximalTime.innerHTML = "Temps maximal";
+
+        myButton.innerHTML = "Go !";
 
         var interval;
 
         myButton.addEventListener("click", function() {
+
+            MAX_VALUES_TO_ENTER = inputNumberOccurences.value;
+            MIN_TIME = inputMinimalTime.value;
+            MAX_TIME = inputMaximalTime.value;
+
             setDelay();
         });
 
@@ -71,6 +115,23 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
+        //divTwo.appendChild(divBlock);
+
+        divTwo.appendChild(textNumberOccurences);
+        divTwo.appendChild(inputNumberOccurences);
+
+        divTwo.appendChild(document.createElement("br"));
+
+        divTwo.appendChild(textMinimalTime);
+        divTwo.appendChild(inputMinimalTime);
+
+        divTwo.appendChild(document.createElement("br"));
+
+        divTwo.appendChild(textMaximalTime);
+        divTwo.appendChild(inputMaximalTime);
+
+        divTwo.appendChild(document.createElement("br"));
 
         divTwo.appendChild(myButton);
 
