@@ -19,9 +19,40 @@
         return;
     }
 
-    var MAX_VALUES_TO_ENTER = 5;
-    var MIN_TIME = 15;
-    var MAX_TIME = 25;
+    var MAX_VALUES_TO_ENTER;
+    var MIN_TIME;
+    var MAX_TIME;
+
+    if (document.cookie != null) {
+
+        MAX_VALUES_TO_ENTER = getCookie("max_values_to_enter");
+
+        if (MAX_VALUES_TO_ENTER == "") {
+            MAX_VALUES_TO_ENTER = 5;
+        }
+
+        MIN_TIME = getCookie("min_time");
+
+        if (MIN_TIME == "") {
+            MIN_TIME = 15;
+        }
+
+        MAX_TIME = getCookie("max_time");
+
+        if (MAX_TIME == "") {
+            MAX_TIME = 25;
+        }
+    }
+
+
+
+    // Get the cookie !
+    // var cookieMaxValuesToEnter = "max_values_to_enter=" + MAX_VALUES_TO_ENTER + "; ";
+    // var cookieMinTime = "min_time=" + MIN_TIME + "; ";
+    // var cookieMaxTime = "max_time=" + MAX_TIME + "; ";
+    //var cookieExpires = "expires=Fri, 01 Jan 2100 00:00:00 UTC; ";
+    //var cookiePath = "path=/";
+    // document.cookie = cookieMaxValuesToEnter + cookieMinTime + cookieMaxTime; // + cookiePath; // cookieExpires + ;
 
     var index = 0;
 
@@ -48,7 +79,7 @@
         var inputNumberOccurences = document.createElement("input");
         inputNumberOccurences.setAttribute("id", "inputNumberOccurences");
         inputNumberOccurences.setAttribute("type", "number");
-        inputNumberOccurences.value = 8;
+        inputNumberOccurences.value = MAX_VALUES_TO_ENTER;
 
         var textMinimalTime = document.createElement("label");
         textMinimalTime.setAttribute("id", "textMinimalTime");
@@ -58,7 +89,7 @@
         var inputMinimalTime = document.createElement("input");
         inputMinimalTime.setAttribute("id", "inputMinimalTime");
         inputMinimalTime.setAttribute("type", "number");
-        inputMinimalTime.value = 15;
+        inputMinimalTime.value = MIN_TIME;
 
         var textMaximalTime = document.createElement("label");
         textMaximalTime.setAttribute("id", "textMaximalTime");
@@ -68,7 +99,7 @@
         var inputMaximalTime = document.createElement("input");
         inputMaximalTime.setAttribute("id", "inputMaximalTime");
         inputMaximalTime.setAttribute("type", "number");
-        inputMaximalTime.value = 25;
+        inputMaximalTime.value = MAX_TIME;
 
         var myButton = document.createElement("button");
         myButton.classList.add("btn", "btn-primary", "btn-submit", "me-1", "waves-effect", "waves-float", "waves-light");
@@ -88,6 +119,31 @@
             MAX_VALUES_TO_ENTER = inputNumberOccurences.value;
             MIN_TIME = inputMinimalTime.value;
             MAX_TIME = inputMaximalTime.value;
+
+            if (MAX_VALUES_TO_ENTER < 1) {
+                alert("Le nombre d'occurences doit être strictement positif");
+                return;
+            }
+
+            if (MAX_VALUES_TO_ENTER > 30) {
+                alert("Le nombre d'occurences ne peut être supérieur à 30");
+                return;
+            }
+
+            if (MIN_TIME < 1) {
+                alert("Le temps minimal ne peut être inférieur à 1s");
+                return;
+            }
+
+            if (MAX_TIME < MIN_TIME) {
+                alert("Le temps maximal ne peut être inférieur au temps minimal");
+                return;
+            }
+
+            // Update the cookie with values
+            document.cookie = "max_values_to_enter=" + MAX_VALUES_TO_ENTER;
+            document.cookie = "min_time=" + MIN_TIME;
+            document.cookie = "max_time=" + MAX_TIME;
 
             setDelay();
         });
@@ -182,5 +238,16 @@
 
     function uncheckRadioButton(name) {
         document.getElementById(name).checked = false;
+    }
+
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const cDecoded = decodeURIComponent(document.cookie);
+        const cArr = cDecoded .split('; ');
+        let res;
+        cArr.forEach(val => {
+            if (val.indexOf(name) === 0) res = val.substring(name.length);
+        })
+        return res;
     }
 })();
