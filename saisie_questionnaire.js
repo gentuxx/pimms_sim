@@ -12,47 +12,15 @@
 (function() {
     'use strict';
 
-    var name = document.getElementsByClassName("user-name")[0].outerText.toUpperCase();
-    var bName = name.includes("LOIC") || name.includes("SOPHIE") || name.includes("SABRINA");
-
-    if (!bName) {
-        return;
-    }
-
     var MAX_VALUES_TO_ENTER;
     var MIN_TIME;
     var MAX_TIME;
 
     if (document.cookie != null) {
-
         MAX_VALUES_TO_ENTER = getCookie("max_values_to_enter");
-
-        if (MAX_VALUES_TO_ENTER == "") {
-            MAX_VALUES_TO_ENTER = 5;
-        }
-
         MIN_TIME = getCookie("min_time");
-
-        if (MIN_TIME == "") {
-            MIN_TIME = 15;
-        }
-
         MAX_TIME = getCookie("max_time");
-
-        if (MAX_TIME == "") {
-            MAX_TIME = 25;
-        }
     }
-
-
-
-    // Get the cookie !
-    // var cookieMaxValuesToEnter = "max_values_to_enter=" + MAX_VALUES_TO_ENTER + "; ";
-    // var cookieMinTime = "min_time=" + MIN_TIME + "; ";
-    // var cookieMaxTime = "max_time=" + MAX_TIME + "; ";
-    //var cookieExpires = "expires=Fri, 01 Jan 2100 00:00:00 UTC; ";
-    //var cookiePath = "path=/";
-    // document.cookie = cookieMaxValuesToEnter + cookieMinTime + cookieMaxTime; // + cookiePath; // cookieExpires + ;
 
     var index = 0;
 
@@ -144,6 +112,7 @@
             document.cookie = "max_values_to_enter=" + MAX_VALUES_TO_ENTER;
             document.cookie = "min_time=" + MIN_TIME;
             document.cookie = "max_time=" + MAX_TIME;
+            document.cookie = "SameSite=None";
 
             setDelay();
         });
