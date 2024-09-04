@@ -72,8 +72,6 @@
         var myButton = document.createElement("button");
         myButton.classList.add("btn", "btn-primary", "btn-submit", "me-1", "waves-effect", "waves-float", "waves-light");
 
-        //var id = 1;
-        //myButton.innerHTML = "Cols: <input type='text' id='colsTextArea' maxlength='3' /><br>Rows: <input type='text' id='rowsTextArea' maxlength='2' /><br><button type='button' onclick=\"updateTextArea(\'" + id + "\')\" >Add</button><br>";
         textNumberOccurences.innerHTML = "Nombre d'occurences";
         textMinimalTime.innerHTML = "Temps minimal";
         textMaximalTime.innerHTML = "Temps maximal";
