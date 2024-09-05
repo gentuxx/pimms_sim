@@ -77,7 +77,7 @@
         combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
         combobox.add(new Option("SNCF : Solidario", "SNCF : Solidario"));
 
-        Array.from(combobox.options).forEach((element) => (element.onclick = loadValues));
+        Array.from(combobox.options).forEach((element) => (element.addEventListener("click", loadValues)));
 
         document.getElementsByName("activity_status_id")[0].setAttribute("id", "id_activity_status");
         document.querySelector("input[name=zipcode]").setAttribute("id", "id_zipcode");
@@ -88,13 +88,6 @@
 
             // Stops all triggers or else it erases time slot checked
             event.stopImmediatePropagation();
-
-            /*
-            if (document.getElementById("TimeSlotMorning") == null && document.getElementById("TimeSlotEvening") == null) {
-                // Trigger 2 fois  quand je change la valeur de la combobox
-                alert("Erreur : veuillez sélectionner un jour où les tranches horaires sont disponibles");
-                return;
-            }*/
 
             var comboboxValue = combobox.value.trim();
             var accueil_choice = document.getElementById("accueil_choice");
