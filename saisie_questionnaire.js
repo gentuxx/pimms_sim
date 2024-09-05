@@ -20,6 +20,18 @@
         MAX_VALUES_TO_ENTER = getCookie("max_values_to_enter");
         MIN_TIME = getCookie("min_time");
         MAX_TIME = getCookie("max_time");
+
+        if (MAX_VALUES_TO_ENTER == null) {
+            MAX_VALUES_TO_ENTER = 5;
+        }
+
+        if (MIN_TIME == null) {
+            MIN_TIME = 15;
+        }
+
+        if (MAX_TIME == null) {
+            MAX_TIME = 25;
+        }
     }
 
     var index = 0;
@@ -82,6 +94,8 @@
 
         myButton.addEventListener("click", function() {
 
+            index = 0;
+
             MAX_VALUES_TO_ENTER = inputNumberOccurences.value;
             MIN_TIME = inputMinimalTime.value;
             MAX_TIME = inputMaximalTime.value;
@@ -138,8 +152,6 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
-        //divTwo.appendChild(divBlock);
 
         divTwo.appendChild(textNumberOccurences);
         divTwo.appendChild(inputNumberOccurences);
