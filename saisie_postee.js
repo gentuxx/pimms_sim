@@ -23,6 +23,7 @@
 
         var divTwo = document.getElementById("div_two");
         var combobox = document.createElement("select");
+        combobox.setAttribute("id", "combobox");
 
         var optPreaccueil = new Option("-------------- Pré-accueil --------------");
         optPreaccueil.disabled = true;
@@ -621,8 +622,6 @@
         // Injecting the selection into the HTML code
         divTwo.appendChild(combobox);
 
-        combobox.onchange = loadValues;
-
         $(document).ready(function () {
             setTimeout(setValues, 1000);
         });
@@ -641,7 +640,7 @@
             alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
 
             combobox.selectedIndex = 1;
-            combobox.dispatchEvent(new Event("change"));
+            combobox[1].dispatchEvent(new Event("click"));
         }
     }
 
