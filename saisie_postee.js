@@ -65,7 +65,7 @@
         combobox.add(new Option("CAF - Déclaration des ressources", "CAF - Déclaration des ressources"));
         combobox.add(new Option("CAF - Réaliser une demande de RSA", "CAF - Réaliser une demande de RSA"));
         combobox.add(new Option("CPAM : Demande de CSS", "CPAM : Demande de CSS"));
-        combobox.add(new Option("CPAM : Demande de carte vitale", "CPAM : Demande de carte vitale"));
+        combobox.add(new Option("CPAM : Demande de carte vitale / CEAM / Attestation de droits", "CPAM : Demande de carte vitale / CEAM / Attestation de droits"));
         combobox.add(new Option("DGFIP - Compléter une déclaration des revenus", "DGFIP - Compléter une déclaration des revenus"));
         combobox.add(new Option("France Travail : Actualisation mensuelle", "France Travail : Actualisation mensuelle"));
         combobox.add(new Option("Justice : Extrait de casier judiciaire", "Justice : Extrait de casier judiciaire"));
@@ -74,6 +74,8 @@
         combobox.add(new Option("Ministère de l'écologie et des territoires : Chèque énergie", "Ministère de l'écologie et des territoires : Chèque énergie"));
         combobox.add(new Option("Ministère de l'intérieur : Remboursement d'un timbre fiscal", "Ministère de l'intérieur : Remboursement d'un timbre fiscal"));
         combobox.add(new Option("MSA", "MSA"));
+        combobox.add(new Option("Retraite - Demande d'attestation / Consultations des paiements", "Retraite - Demande d'attestation / Consultations des paiements"));
+        combobox.add(new Option("Retraite - Demande du relevé de carrière", "Retraite - Demande du relevé de carrière"));
         combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
         combobox.add(new Option("SNCF : Solidario", "SNCF : Solidario"));
 
@@ -366,6 +368,38 @@
 
                     setComboValue("accueil_choice", [1,4,7]);
 
+                } else if (comboboxValue == "Retraite - Demande du relevé de carrière") {
+
+                    setComboValue("contact-channel", 2);
+
+                    document.getElementById("check_france_service").checked = false;
+                    document.getElementById("check_france_service").click();
+
+                    checkRadioButton("Partner6");
+
+                    setComboValue("fs_theme_id", 74);
+                    setComboValue("fs_accompaniment_id", 348);
+                    setComboValue("operator_id", 258);
+                    setComboValue("operator_action_id", 853);
+
+                    setComboValue("accueil_choice", [1,4,7]);
+
+                } else if (comboboxValue == "Retraite - Demande d'attestation / Consultations des paiements") {
+
+                    setComboValue("contact-channel", 2);
+
+                    document.getElementById("check_france_service").checked = false;
+                    document.getElementById("check_france_service").click();
+
+                    checkRadioButton("Partner6");
+
+                    setComboValue("fs_theme_id", 75);
+                    setComboValue("fs_accompaniment_id", 351);
+                    setComboValue("operator_id", 258);
+                    setComboValue("operator_action_id", 1902);
+
+                    setComboValue("accueil_choice", [1,4,7]);
+
                 } else if (comboboxValue == "La Poste") {
 
                     document.getElementById("check_france_service").checked = false;
@@ -390,7 +424,7 @@
 
                     setComboValue("accueil_choice", [1,4,7]);
 
-                } else if (comboboxValue == "CPAM : Demande de carte vitale") {
+                } else if (comboboxValue == "CPAM : Demande de carte vitale / CEAM / Attestation de droits") {
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
