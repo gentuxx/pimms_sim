@@ -12,10 +12,581 @@
 (function() {
     "use strict";
 
-    const structure = document.getElementById("structure_selected").textContent.trim();
+    function loadValues(event) {
 
-    if (structure == "Narbonne" || structure == "Sigean Corbières Méditerranée")
-    {
+        resetValues();
+
+        // Stops all triggers or else it erases time slot checked
+        event.stopImmediatePropagation();
+
+        var comboboxValue = combobox.value.trim();
+        var accueil_choice = document.getElementById("accueil_choice");
+
+        var bMorning = comboboxValue == "Retraite - Demande de retraite"
+        || comboboxValue == "Retraite - Demande de réversion"
+        || comboboxValue == "Retraite - Demande d'ASPA"
+        || comboboxValue == "MDPH - Dossier MDPH"
+        || comboboxValue == "France Travail - Inscription"
+        || comboboxValue == "Logement social : 1ère demande"
+        || comboboxValue == "PCB (Point Conseil Budget)";
+
+        if (event.target == document.getElementById("fp-default")) {
+            if (bMorning) {
+                checkRadioButton("DurationRadio5");
+            } else {
+                checkRadioButton("DurationRadio4");
+            }
+        } else {
+            if (bMorning) {
+                checkRadioButton("DurationRadio5");
+                checkRadioButton("TimeSlotMorning");
+            } else {
+                if (!checkRadioButton("TimeSlotEvening")) { // If radio button doesn't exist like for some permanences, let's check the first instead
+                    checkRadioButton("TimeSlotMorning");
+                    checkRadioButton("DurationRadio5");
+                } else {
+                    checkRadioButton("DurationRadio4");
+                }
+            }
+
+            const structure = document.getElementById("structure_selected").textContent.trim();
+
+            if (structure == "Narbonne") {
+                document.getElementById("id_zipcode").value = 11100;
+            } else if (structure == "Sigean Corbières Méditerranée") {
+                document.getElementById("id_zipcode").value = 11130;
+            }
+
+            let enterEvent = new KeyboardEvent("keyup", {
+                key: "Enter",
+                keyCode: 13,
+                which: 13,
+                bubbles: true
+            });
+
+            document.querySelector("input[name=zipcode]").dispatchEvent(enterEvent);
+
+            setComboValue("contact-channel", 5);
+            checkRadioButton("SexRadio1");
+            checkRadioButton("LangueRadio1");
+            checkRadioButton("CountryRadio1");
+
+            setComboValue("district", 9249);
+
+            checkRadioButton("VisiteRadio14");
+
+            setComboValue("pimms_knowledge", 13);
+
+            checkRadioButton("qpvRadio15");
+
+            //--------------------------- Reception ---------------------------//
+            if (comboboxValue == "Appel téléphonique (matin)") {
+
+                checkRadioButton("DurationRadio1");
+                checkRadioButton("TimeSlotMorning");
+                setComboValue("contact-channel", 4);
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 10);
+                setComboValue("operator_action_id", 79);
+
+                setComboValue("accueil_choice", [1,5]);
+
+            } else if (comboboxValue == "Appel téléphonique (après-midi)") {
+
+                checkRadioButton("DurationRadio1");
+                checkRadioButton("TimeSlotEvening");
+                setComboValue("contact-channel", 4);
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 10);
+                setComboValue("operator_action_id", 79);
+
+                setComboValue("accueil_choice", [1,5]);
+
+            } else if (comboboxValue == "Poste en libre service (matin)") {
+
+                checkRadioButton("TimeSlotMorning");
+                setComboValue("contact-channel", 5);
+                setComboValue("use_stuff", 2);
+                setComboValue("accompaniment_type", 2);
+                checkRadioButton("DurationAccompanimentRadio5");
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 293);
+                setComboValue("operator_action_id", 983);
+
+                setComboValue("accueil_choice", [6]);
+
+
+            } else if (comboboxValue == "Poste en libre service (après-midi)") {
+
+                checkRadioButton("TimeSlotEvening");
+                setComboValue("contact-channel", 5);
+                setComboValue("use_stuff", 2);
+                setComboValue("accompaniment_type", 2);
+                checkRadioButton("DurationAccompanimentRadio5");
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 293);
+                setComboValue("operator_action_id", 983);
+
+                setComboValue("accueil_choice", [6]);
+
+                //--------------------------- Morning ---------------------------//
+            } else if (comboboxValue == "Retraite - Demande de retraite") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner6");
+
+                setComboValue("fs_theme_id", 74);
+                setComboValue("fs_accompaniment_id", 347);
+                setComboValue("operator_id", 258);
+                setComboValue("operator_action_id", 852);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Retraite - Demande de réversion") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner6");
+
+                setComboValue("fs_theme_id", 72);
+                setComboValue("fs_accompaniment_id", 345);
+                setComboValue("operator_id", 258);
+                setComboValue("operator_action_id", 848);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Retraite - Demande d'ASPA") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner6");
+
+                setComboValue("fs_theme_id", 74);
+                setComboValue("fs_accompaniment_id", 347);
+                setComboValue("operator_id", 258);
+                setComboValue("operator_action_id", 851);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "MDPH - Dossier MDPH") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 280);
+                setComboValue("operator_action_id", 927);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "France Travail - Inscription") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner9");
+
+                setComboValue("fs_theme_id", 86);
+                setComboValue("fs_accompaniment_id", 385);
+                setComboValue("operator_id", 56);
+                setComboValue("operator_action_id", 169);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Logement social : 1ère demande") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 205);
+                setComboValue("operator_action_id", 729);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "PCB (Point Conseil Budget)") {
+
+                setComboValue("contact-channel", 2);
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("select_pcb_job_actions", 5);
+
+                setComboValue("operator_id", 98);
+                setComboValue("operator_action_id", 471);
+
+                setComboValue("accueil_choice", [1,3,4]);
+
+                //--------------------------- Afternoon ---------------------------//
+            } else if (comboboxValue == "CAF - Déclaration des ressources") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner1");
+
+                setComboValue("fs_theme_id", 60);
+                setComboValue("fs_accompaniment_id", 320);
+                setComboValue("operator_id", 260);
+                setComboValue("operator_action_id", 870);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "CAF - Réaliser une demande de RSA") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner1");
+
+                setComboValue("fs_theme_id", 60);
+                setComboValue("fs_accompaniment_id", 324);
+                setComboValue("operator_id", 260);
+                setComboValue("operator_action_id", 872);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "DGFIP - Compléter une déclaration des revenus") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner2");
+
+                setComboValue("fs_theme_id", 80);
+                setComboValue("fs_accompaniment_id", 371);
+                setComboValue("operator_id", 100);
+                setComboValue("operator_action_id", 488);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "MSA") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+                setComboValue("operator_id", 283);
+
+                checkRadioButton("Partner3");
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Retraite - Demande du relevé de carrière") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner6");
+
+                setComboValue("fs_theme_id", 74);
+                setComboValue("fs_accompaniment_id", 348);
+                setComboValue("operator_id", 258);
+                setComboValue("operator_action_id", 853);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Retraite - Demande d'attestation / Consultation des paiements") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner6");
+
+                setComboValue("fs_theme_id", 75);
+                setComboValue("fs_accompaniment_id", 351);
+                setComboValue("operator_id", 258);
+                setComboValue("operator_action_id", 1902);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "La Poste") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+                setComboValue("operator_id", 127);
+
+                checkRadioButton("Partner4");
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "CPAM : Demande de CSS") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner5");
+
+                setComboValue("fs_theme_id", 69);
+                setComboValue("fs_accompaniment_id", 336);
+                setComboValue("operator_id", 241);
+                setComboValue("operator_action_id", 1527);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "CPAM : Demande de carte vitale / CEAM / Attestation de droits") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner5");
+
+                setComboValue("fs_theme_id", 70);
+                setComboValue("fs_accompaniment_id", 338);
+                setComboValue("operator_id", 241);
+                setComboValue("operator_action_id", 806);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Justice : Extrait de casier judiciaire") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner7");
+
+                setComboValue("fs_theme_id", 104);
+                setComboValue("fs_accompaniment_id", 430);
+                setComboValue("operator_id", 5);
+                setComboValue("operator_action_id", 1941);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Pré-demande CNI / Passeport") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 90);
+                setComboValue("fs_accompaniment_id", 406);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 1913);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Demande de permis de conduire") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 91);
+                setComboValue("fs_accompaniment_id", 401);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 1808);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Demande de RDV visite médicale de la préfecture") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 91);
+                setComboValue("fs_accompaniment_id", 403);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 73);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Déclarer une cession de véhicule") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 92);
+                setComboValue("fs_accompaniment_id", 394);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 52);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Déclarer un achat de véhicule") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 92);
+                setComboValue("fs_accompaniment_id", 395);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 54);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Modifier une carte grise") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 93);
+                setComboValue("fs_accompaniment_id", 399);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 61);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANTS : Payer ou contester une amende") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 94);
+                setComboValue("fs_accompaniment_id", 400);
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 71);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "France Travail : Actualisation mensuelle") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner9");
+
+                setComboValue("fs_theme_id", 86);
+                setComboValue("fs_accompaniment_id", 384);
+                setComboValue("operator_id", 56);
+                setComboValue("operator_action_id", 167);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Logement social : Renouvellement") {
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 205);
+                setComboValue("operator_action_id", 735);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Ministère de l'écologie et des territoires : Chèque énergie") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner10");
+
+                setComboValue("fs_theme_id", 76);
+                setComboValue("fs_accompaniment_id", 354);
+
+                setComboValue("operator_id", 333);
+                setComboValue("operator_action_id", 1774);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Ministère de l'intérieur : Remboursement d'un timbre fiscal") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner8");
+
+                setComboValue("fs_theme_id", 90);
+                setComboValue("fs_accompaniment_id", 396);
+
+                setComboValue("operator_id", 9);
+                setComboValue("operator_action_id", 1405);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Service public : Demande extrait d'acte de naissance") {
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 1);
+                setComboValue("operator_action_id", 2);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "SNCF : Solidario") {
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 120);
+                setComboValue("operator_action_id", 546);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "Autre") {
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 10);
+                setComboValue("operator_action_id", 79);
+
+                setComboValue("accueil_choice", [1,4,7]);
+
+            } else if (comboboxValue == "ANAH : Agence Nationale de l'Habitat") {
+
+                document.getElementById("check_france_service").checked = false;
+                document.getElementById("check_france_service").click();
+
+                checkRadioButton("Partner11");
+
+                setComboValue("accueil_choice", [1,4,7]);
+            }
+
+            // For permanences who have only one time slot avalaible
+            if (document.getElementById("TimeSlotEvening") == null) {
+                setComboValue("contact-channel", 2);
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        setTimeout(setValues, 500);
+    });
+
+    function setValues() {
+
+        // Don't load if none time slot avalaible
+        if (document.getElementById("TimeSlotMorning") == null) {
+            return;
+        }
+
         const demoClasses = document.querySelectorAll(".bs-stepper-content");
 
         var divEl = demoClasses[0];
@@ -81,587 +652,26 @@
 
         Array.from(combobox.options).forEach((element) => (element.addEventListener("click", loadValues)));
 
-        document.getElementsByName("activity_status_id")[0].setAttribute("id", "id_activity_status");
-        document.querySelector("input[name=zipcode]").setAttribute("id", "id_zipcode");
-
-        function loadValues(event) {
-
-            resetValues();
-
-            // Stops all triggers or else it erases time slot checked
-            event.stopImmediatePropagation();
-
-            var comboboxValue = combobox.value.trim();
-            var accueil_choice = document.getElementById("accueil_choice");
-
-            var bMorning = comboboxValue == "Retraite - Demande de retraite"
-            || comboboxValue == "Retraite - Demande de réversion"
-            || comboboxValue == "Retraite - Demande d'ASPA"
-            || comboboxValue == "MDPH - Dossier MDPH"
-            || comboboxValue == "France Travail - Inscription"
-            || comboboxValue == "Logement social : 1ère demande"
-            || comboboxValue == "PCB (Point Conseil Budget)";
-
-            if (event.target == document.getElementById("fp-default")) {
-                if (bMorning) {
-                    checkRadioButton("DurationRadio5");
-                } else {
-                    checkRadioButton("DurationRadio4");
-                }
-            } else {
-                if (bMorning) {
-                    checkRadioButton("DurationRadio5");
-                    checkRadioButton("TimeSlotMorning");
-                } else {
-                    checkRadioButton("DurationRadio4");
-                    checkRadioButton("TimeSlotEvening");
-                }
-
-                const structure = document.getElementById("structure_selected").textContent.trim();
-
-                if (structure == "Narbonne") {
-                    document.getElementById("id_zipcode").value = 11100;
-                } else if (structure == "Sigean Corbières Méditerranée") {
-                    document.getElementById("id_zipcode").value = 11130;
-                }
-
-                let enterEvent = new KeyboardEvent("keyup", {
-                    key: "Enter",
-                    keyCode: 13,
-                    which: 13,
-                    bubbles: true
-                });
-
-                document.querySelector("input[name=zipcode]").dispatchEvent(enterEvent);
-
-                setComboValue("contact-channel", 5);
-                checkRadioButton("SexRadio1");
-                checkRadioButton("LangueRadio1");
-                checkRadioButton("CountryRadio1");
-
-                setComboValue("district", 9249);
-
-                checkRadioButton("VisiteRadio14");
-
-                setComboValue("pimms_knowledge", 13);
-
-                checkRadioButton("qpvRadio15");
-
-                //--------------------------- Reception ---------------------------//
-                if (comboboxValue == "Appel téléphonique (matin)") {
-
-                    checkRadioButton("DurationRadio1");
-                    checkRadioButton("TimeSlotMorning");
-                    setComboValue("contact-channel", 4);
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 10);
-                    setComboValue("operator_action_id", 79);
-
-                    setComboValue("accueil_choice", [1,5]);
-
-                } else if (comboboxValue == "Appel téléphonique (après-midi)") {
-
-                    checkRadioButton("DurationRadio1");
-                    checkRadioButton("TimeSlotEvening");
-                    setComboValue("contact-channel", 4);
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 10);
-                    setComboValue("operator_action_id", 79);
-
-                    setComboValue("accueil_choice", [1,5]);
-
-                } else if (comboboxValue == "Poste en libre service (matin)") {
-
-                    checkRadioButton("TimeSlotMorning");
-                    setComboValue("contact-channel", 5);
-                    setComboValue("use_stuff", 2);
-                    setComboValue("accompaniment_type", 2);
-                    checkRadioButton("DurationAccompanimentRadio5");
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 293);
-                    setComboValue("operator_action_id", 983);
-
-                    setComboValue("accueil_choice", [6]);
-
-
-                } else if (comboboxValue == "Poste en libre service (après-midi)") {
-
-                    checkRadioButton("TimeSlotEvening");
-                    setComboValue("contact-channel", 5);
-                    setComboValue("use_stuff", 2);
-                    setComboValue("accompaniment_type", 2);
-                    checkRadioButton("DurationAccompanimentRadio5");
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 293);
-                    setComboValue("operator_action_id", 983);
-
-                    setComboValue("accueil_choice", [6]);
-
-                    //--------------------------- Morning ---------------------------//
-                } else if (comboboxValue == "Retraite - Demande de retraite") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner6");
-
-                    setComboValue("fs_theme_id", 74);
-                    setComboValue("fs_accompaniment_id", 347);
-                    setComboValue("operator_id", 258);
-                    setComboValue("operator_action_id", 852);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Retraite - Demande de réversion") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner6");
-
-                    setComboValue("fs_theme_id", 72);
-                    setComboValue("fs_accompaniment_id", 345);
-                    setComboValue("operator_id", 258);
-                    setComboValue("operator_action_id", 848);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Retraite - Demande d'ASPA") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner6");
-
-                    setComboValue("fs_theme_id", 74);
-                    setComboValue("fs_accompaniment_id", 347);
-                    setComboValue("operator_id", 258);
-                    setComboValue("operator_action_id", 851);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "MDPH - Dossier MDPH") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 280);
-                    setComboValue("operator_action_id", 927);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "France Travail - Inscription") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner9");
-
-                    setComboValue("fs_theme_id", 86);
-                    setComboValue("fs_accompaniment_id", 385);
-                    setComboValue("operator_id", 56);
-                    setComboValue("operator_action_id", 169);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Logement social : 1ère demande") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 205);
-                    setComboValue("operator_action_id", 729);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "PCB (Point Conseil Budget)") {
-
-                    setComboValue("contact-channel", 2);
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("select_pcb_job_actions", 5);
-
-                    setComboValue("operator_id", 98);
-                    setComboValue("operator_action_id", 471);
-
-                    setComboValue("accueil_choice", [1,3,4]);
-
-                    //--------------------------- Afternoon ---------------------------//
-                } else if (comboboxValue == "CAF - Déclaration des ressources") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner1");
-
-                    setComboValue("fs_theme_id", 60);
-                    setComboValue("fs_accompaniment_id", 320);
-                    setComboValue("operator_id", 260);
-                    setComboValue("operator_action_id", 870);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "CAF - Réaliser une demande de RSA") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner1");
-
-                    setComboValue("fs_theme_id", 60);
-                    setComboValue("fs_accompaniment_id", 324);
-                    setComboValue("operator_id", 260);
-                    setComboValue("operator_action_id", 872);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "DGFIP - Compléter une déclaration des revenus") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner2");
-
-                    setComboValue("fs_theme_id", 80);
-                    setComboValue("fs_accompaniment_id", 371);
-                    setComboValue("operator_id", 100);
-                    setComboValue("operator_action_id", 488);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "MSA") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-                    setComboValue("operator_id", 283);
-
-                    checkRadioButton("Partner3");
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Retraite - Demande du relevé de carrière") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner6");
-
-                    setComboValue("fs_theme_id", 74);
-                    setComboValue("fs_accompaniment_id", 348);
-                    setComboValue("operator_id", 258);
-                    setComboValue("operator_action_id", 853);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Retraite - Demande d'attestation / Consultation des paiements") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner6");
-
-                    setComboValue("fs_theme_id", 75);
-                    setComboValue("fs_accompaniment_id", 351);
-                    setComboValue("operator_id", 258);
-                    setComboValue("operator_action_id", 1902);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "La Poste") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-                    setComboValue("operator_id", 127);
-
-                    checkRadioButton("Partner4");
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "CPAM : Demande de CSS") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner5");
-
-                    setComboValue("fs_theme_id", 69);
-                    setComboValue("fs_accompaniment_id", 336);
-                    setComboValue("operator_id", 241);
-                    setComboValue("operator_action_id", 1527);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "CPAM : Demande de carte vitale / CEAM / Attestation de droits") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner5");
-
-                    setComboValue("fs_theme_id", 70);
-                    setComboValue("fs_accompaniment_id", 338);
-                    setComboValue("operator_id", 241);
-                    setComboValue("operator_action_id", 806);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Justice : Extrait de casier judiciaire") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner7");
-
-                    setComboValue("fs_theme_id", 104);
-                    setComboValue("fs_accompaniment_id", 430);
-                    setComboValue("operator_id", 5);
-                    setComboValue("operator_action_id", 1941);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Pré-demande CNI / Passeport") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 90);
-                    setComboValue("fs_accompaniment_id", 406);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 1913);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Demande de permis de conduire") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 91);
-                    setComboValue("fs_accompaniment_id", 401);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 1808);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Demande de RDV visite médicale de la préfecture") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 91);
-                    setComboValue("fs_accompaniment_id", 403);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 73);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Déclarer une cession de véhicule") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 92);
-                    setComboValue("fs_accompaniment_id", 394);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 52);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Déclarer un achat de véhicule") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 92);
-                    setComboValue("fs_accompaniment_id", 395);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 54);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Modifier une carte grise") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 93);
-                    setComboValue("fs_accompaniment_id", 399);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 61);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANTS : Payer ou contester une amende") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 94);
-                    setComboValue("fs_accompaniment_id", 400);
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 71);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "France Travail : Actualisation mensuelle") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner9");
-
-                    setComboValue("fs_theme_id", 86);
-                    setComboValue("fs_accompaniment_id", 384);
-                    setComboValue("operator_id", 56);
-                    setComboValue("operator_action_id", 167);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Logement social : Renouvellement") {
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 205);
-                    setComboValue("operator_action_id", 735);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Ministère de l'écologie et des territoires : Chèque énergie") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner10");
-
-                    setComboValue("fs_theme_id", 76);
-                    setComboValue("fs_accompaniment_id", 354);
-
-                    setComboValue("operator_id", 333);
-                    setComboValue("operator_action_id", 1774);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Ministère de l'intérieur : Remboursement d'un timbre fiscal") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner8");
-
-                    setComboValue("fs_theme_id", 90);
-                    setComboValue("fs_accompaniment_id", 396);
-
-                    setComboValue("operator_id", 9);
-                    setComboValue("operator_action_id", 1405);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Service public : Demande extrait d'acte de naissance") {
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 1);
-                    setComboValue("operator_action_id", 2);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "SNCF : Solidario") {
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 120);
-                    setComboValue("operator_action_id", 546);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "Autre") {
-
-                    document.getElementById("check_france_service").checked = true;
-                    document.getElementById("check_france_service").click();
-
-                    setComboValue("operator_id", 10);
-                    setComboValue("operator_action_id", 79);
-
-                    setComboValue("accueil_choice", [1,4,7]);
-
-                } else if (comboboxValue == "ANAH : Agence Nationale de l'Habitat") {
-
-                    document.getElementById("check_france_service").checked = false;
-                    document.getElementById("check_france_service").click();
-
-                    checkRadioButton("Partner11");
-
-                    setComboValue("accueil_choice", [1,4,7]);
-                }
-            }
-        }
-
         // Injecting the selection into the HTML code
         divTwo.appendChild(combobox);
 
-        $(document).ready(function () {
-            setTimeout(setValues, 1000);
-        });
+        document.getElementsByName("activity_status_id")[0].setAttribute("id", "id_activity_status");
+        document.querySelector("input[name=zipcode]").setAttribute("id", "id_zipcode");
 
-        function setValues() {
-            var elementZipCode = document.getElementById("id_zipcode");
-            elementZipCode.addEventListener("keyup", (event) => {setCityValue(event);event.stopImmediatePropagation();});
+        var elementZipCode = document.getElementById("id_zipcode");
+        elementZipCode.addEventListener("keyup", (event) => {setCityValue(event);event.stopImmediatePropagation();});
 
-            var elementDp = document.querySelector(".form-control.flatpickr-basic.change_date");
-            elementDp.addEventListener("change", (event) => {loadValues(event);setTime(event);});
+        var elementDp = document.querySelector(".form-control.flatpickr-basic.change_date");
+        elementDp.addEventListener("change", (event) => {loadValues(event);setTime(event);});
 
-            var alreadyCameYes = document.getElementById("VisiteRadio13");
-            var alreadyCameNo = document.getElementById("VisiteRadio14");
+        var alreadyCameYes = document.getElementById("VisiteRadio13");
+        var alreadyCameNo = document.getElementById("VisiteRadio14");
 
-            alreadyCameYes.addEventListener("change", (event) => {changeKnowledgeYes();});
-            alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
+        alreadyCameYes.addEventListener("change", (event) => {changeKnowledgeYes();});
+        alreadyCameNo.addEventListener("change", (event) => {changeKnowledgeNo();});
 
-            combobox.selectedIndex = 1;
-            combobox[1].dispatchEvent(new Event("click"));
-        }
+        combobox.selectedIndex = 1;
+        combobox[1].dispatchEvent(new Event("click"));
     }
 
     function changeKnowledgeYes() {
@@ -739,6 +749,7 @@
         } else if (document.getElementById("combobox").value == "Retraite - Demande du relevé de carrière") {
             setComboValue("user_age", 13);
         }
+        return true;
     }
 
     function setComboValue(name, value) {
@@ -747,12 +758,26 @@
     }
 
     function checkRadioButton(name) {
+
+        if (document.getElementById(name) == null) {
+            return false;
+        }
+
         document.getElementById(name).checked = true;
         document.getElementById(name).click();
+
+        return true;
     }
 
     function uncheckRadioButton(name) {
+
+        if (document.getElementById(name) == null) {
+            return false;
+        }
+
         document.getElementById(name).checked = false;
+
+        return true;
     }
 
     function setCityValue(e) {
