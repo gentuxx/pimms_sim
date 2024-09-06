@@ -16,8 +16,6 @@
     var bNarbonne = structure == 'Narbonne - Pand@';
     var bSigean = structure == "Sigean Corbières Méditerranée";
 
-    alert("test !");
-
     if (bNarbonne || bSigean)
     {
         const demoClasses = document.querySelectorAll('.card-title');
