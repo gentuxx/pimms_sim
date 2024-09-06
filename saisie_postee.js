@@ -120,7 +120,6 @@
                 document.getElementById("check_france_service").click();
 
                 setComboValue("operator_id", 293);
-                // setComboValue("operator_action_id", 983);
                 setComboValue("operator_action_id", 976);
 
                 setComboValue("accueil_choice", [6]);
@@ -138,7 +137,6 @@
                 document.getElementById("check_france_service").click();
 
                 setComboValue("operator_id", 293);
-                // setComboValue("operator_action_id", 983);
                 setComboValue("operator_action_id", 976);
 
                 setComboValue("accueil_choice", [6]);
