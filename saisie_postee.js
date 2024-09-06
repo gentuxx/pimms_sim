@@ -108,7 +108,7 @@
 
                 setComboValue("accueil_choice", [1,5]);
 
-            } else if (comboboxValue == "Poste en libre service (matin)") {
+            } else if (comboboxValue == "Espace autonomie Pand@ (matin)") {
 
                 checkRadioButton("TimeSlotMorning");
                 setComboValue("contact-channel", 5);
@@ -120,12 +120,13 @@
                 document.getElementById("check_france_service").click();
 
                 setComboValue("operator_id", 293);
-                setComboValue("operator_action_id", 983);
+                // setComboValue("operator_action_id", 983);
+                setComboValue("operator_action_id", 976);
 
                 setComboValue("accueil_choice", [6]);
 
 
-            } else if (comboboxValue == "Poste en libre service (après-midi)") {
+            } else if (comboboxValue == "Espace autonomie Pand@ (après-midi)") {
 
                 checkRadioButton("TimeSlotEvening");
                 setComboValue("contact-channel", 5);
@@ -137,9 +138,38 @@
                 document.getElementById("check_france_service").click();
 
                 setComboValue("operator_id", 293);
-                setComboValue("operator_action_id", 983);
+                // setComboValue("operator_action_id", 983);
+                setComboValue("operator_action_id", 976);
 
                 setComboValue("accueil_choice", [6]);
+
+            } else if (comboboxValue == "Prise de RDV numérique (matin)") {
+
+                checkRadioButton("TimeSlotMorning");
+                setComboValue("contact-channel", 5);
+                checkRadioButton("DurationRadio2");
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 293);
+                setComboValue("operator_action_id", 983);
+
+                setComboValue("accueil_choice", [1]);
+
+            } else if (comboboxValue == "Prise de RDV numérique (après-midi)") {
+
+                checkRadioButton("TimeSlotEvening");
+                setComboValue("contact-channel", 5);
+                checkRadioButton("DurationRadio2");
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 293);
+                setComboValue("operator_action_id", 983);
+
+                setComboValue("accueil_choice", [1]);
 
                 //--------------------------- Morning ---------------------------//
             } else if (comboboxValue == "Retraite - Demande de retraite") {
@@ -603,8 +633,10 @@
 
         combobox.add(new Option("Appel téléphonique (matin)", "Appel téléphonique (matin)"));
         combobox.add(new Option("Appel téléphonique (après-midi)", "Appel téléphonique (après-midi)"));
-        combobox.add(new Option("Poste en libre service (matin)", "Poste en libre service (matin)"));
-        combobox.add(new Option("Poste en libre service (après-midi)", "Poste en libre service (après-midi)"));
+        combobox.add(new Option("Espace autonomie Pand@ (matin)", "Espace autonomie Pand@ (matin)"));
+        combobox.add(new Option("Espace autonomie Pand@ (après-midi)", "Espace autonomie Pand@ (après-midi)"));
+        combobox.add(new Option("Prise de RDV numérique (matin)", "Prise de RDV numérique (matin)"));
+        combobox.add(new Option("Prise de RDV numérique (après-midi)", "Prise de RDV numérique (après-midi)"));
 
         var optOnMorningAppointment = new Option("-------------- Sur rendez-vous le matin --------------");
         optOnMorningAppointment.disabled = true;
