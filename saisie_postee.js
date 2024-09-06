@@ -74,7 +74,7 @@
         combobox.add(new Option("Ministère de l'écologie et des territoires : Chèque énergie", "Ministère de l'écologie et des territoires : Chèque énergie"));
         combobox.add(new Option("Ministère de l'intérieur : Remboursement d'un timbre fiscal", "Ministère de l'intérieur : Remboursement d'un timbre fiscal"));
         combobox.add(new Option("MSA", "MSA"));
-        combobox.add(new Option("Retraite - Demande d'attestation / Consultations des paiements", "Retraite - Demande d'attestation / Consultations des paiements"));
+        combobox.add(new Option("Retraite - Demande d'attestation / Consultation des paiements", "Retraite - Demande d'attestation / Consultation des paiements"));
         combobox.add(new Option("Retraite - Demande du relevé de carrière", "Retraite - Demande du relevé de carrière"));
         combobox.add(new Option("Service public : Demande extrait d'acte de naissance", "Service public : Demande extrait d'acte de naissance"));
         combobox.add(new Option("SNCF : Solidario", "SNCF : Solidario"));
@@ -136,7 +136,6 @@
 
                 setComboValue("contact-channel", 5);
                 checkRadioButton("SexRadio1");
-                setComboValue("user_age", 12);
                 checkRadioButton("LangueRadio1");
                 checkRadioButton("CountryRadio1");
 
@@ -147,8 +146,6 @@
                 setComboValue("pimms_knowledge", 13);
 
                 checkRadioButton("qpvRadio15");
-
-                setComboValue("id_activity_status", 4);
 
                 //--------------------------- Reception ---------------------------//
                 if (comboboxValue == "Appel téléphonique (matin)") {
@@ -370,8 +367,6 @@
 
                 } else if (comboboxValue == "Retraite - Demande du relevé de carrière") {
 
-                    setComboValue("contact-channel", 2);
-
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
 
@@ -384,9 +379,7 @@
 
                     setComboValue("accueil_choice", [1,4,7]);
 
-                } else if (comboboxValue == "Retraite - Demande d'attestation / Consultations des paiements") {
-
-                    setComboValue("contact-channel", 2);
+                } else if (comboboxValue == "Retraite - Demande d'attestation / Consultation des paiements") {
 
                     document.getElementById("check_france_service").checked = false;
                     document.getElementById("check_france_service").click();
@@ -728,6 +721,24 @@
         setComboValue("operator_id", 10);
         setComboValue("operator_action_id", 79);
         setComboValue("accueil_choice", []);
+
+        setComboValue("user_age", 12);
+        setComboValue("id_activity_status", 4);
+
+        if (document.getElementById("combobox").value == "Retraite - Demande d'ASPA") {
+            setComboValue("user_age", 14);
+            setComboValue("id_activity_status", 5);
+        } else if (document.getElementById("combobox").value == "Retraite - Demande de retraite") {
+            setComboValue("user_age", 13);
+        } else if (document.getElementById("combobox").value == "Retraite - Demande de réversion") {
+            setComboValue("user_age", 14);
+            setComboValue("id_activity_status", 5);
+        } else if (document.getElementById("combobox").value == "Retraite - Demande d'attestation / Consultation des paiements") {
+            setComboValue("user_age", 14);
+            setComboValue("id_activity_status", 5);
+        } else if (document.getElementById("combobox").value == "Retraite - Demande du relevé de carrière") {
+            setComboValue("user_age", 13);
+        }
     }
 
     function setComboValue(name, value) {
