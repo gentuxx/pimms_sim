@@ -28,7 +28,10 @@
         || comboboxValue == "MDPH - Dossier MDPH"
         || comboboxValue == "France Travail - Inscription"
         || comboboxValue == "Logement social : 1ère demande"
-        || comboboxValue == "PCB (Point Conseil Budget)";
+        || comboboxValue == "PCB (Point Conseil Budget)"
+        || comboboxValue == "Appel téléphonique (matin)"
+        || comboboxValue == "Espace autonomie Pand@ (matin)"
+        || comboboxValue == "Prise de RDV numérique (matin)";
 
         if (event.target == document.getElementById("fp-default")) {
             if (bMorning) {

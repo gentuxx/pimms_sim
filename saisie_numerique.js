@@ -90,7 +90,7 @@
                 $("#operator_id").val(293);
                 $("#operator_id").change();
 
-                $("#operator_action_id").val(1451);
+                $("#operator_action_id").val(1393);
                 $("#operator_action_id").change();
             }
         }
