@@ -54,9 +54,36 @@
 
             const structure = document.getElementById("structure_selected").textContent.trim();
 
-            if (structure == "Narbonne") {
-                document.getElementById("id_zipcode").value = 11100;
-            } else if (structure == "Sigean Corbières Méditerranée") {
+            const structuresNarbonne = [
+                "PM Narbonne - ALOGEA VAD",
+                "PERMANENCES ORANO",
+                "PERMANENCES DOMITIA",
+                "PM FJT",
+                "PM Resto du Coeur",
+                "Permanence Resto du coeur",
+                "DOMITIA Régul Charges",
+                "VAD DOMITIA",
+                "keolis",
+                "GUITOUNE",
+                "Pimms Narbonne",
+                "Pimms Narbonne - Pand@",
+                "PM Narbonne - PERMANENCE RAZIMBAUD",
+                "PM Narbonne - PERMANENCE FORUM",
+                "PM Narbonne - MAISON PREVENTION SANTE",
+                "PM Narbonne - PERMANENCE ARMISSAN",
+                "PM Narbonne - MAISON DE LA PROXIMITE",
+                "PM Narbonne - PERMANENCE HABITAT",
+                "PM Narbonne - ACTION SENIORS ISOLES MH",
+                "Narbonne"]
+
+            for (var i = 0; i < structuresNarbonne.length; ++i) {
+                if (structure.includes(structuresNarbonne[i])) {
+                    document.getElementById("id_zipcode").value = 11100;
+                    break;
+                }
+            }
+
+            if (structure == "Sigean Corbières Méditerranée") {
                 document.getElementById("id_zipcode").value = 11130;
             }
 
