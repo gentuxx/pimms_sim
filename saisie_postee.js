@@ -52,7 +52,7 @@
                 }
             }
 
-            const structure = document.getElementById("structure_selected").textContent.trim();
+            const structure = document.getElementById("structure_selected").textContent.toUpperCase().trim();
 
             const structuresNarbonne = [
                 "PM Narbonne - ALOGEA VAD",
@@ -77,13 +77,13 @@
                 "Narbonne"]
 
             for (var i = 0; i < structuresNarbonne.length; ++i) {
-                if (structure.includes(structuresNarbonne[i])) {
+                if (structure.includes(structuresNarbonne[i].toUpperCase())) {
                     document.getElementById("id_zipcode").value = 11100;
                     break;
                 }
             }
 
-            if (structure == "Sigean Corbières Méditerranée") {
+            if (structure == "Sigean Corbières Méditerranée".toUpperCase()) {
                 document.getElementById("id_zipcode").value = 11130;
             }
 
