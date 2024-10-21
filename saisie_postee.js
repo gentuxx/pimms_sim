@@ -305,6 +305,8 @@
 
             } else if (comboboxValue == "Police / Gendarmerie - Dépôt de plainte en ligne") {
 
+                setComboValue("contact-channel", 2);
+
                 document.getElementById("check_france_service").checked = true;
                 document.getElementById("check_france_service").click();
 
