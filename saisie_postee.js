@@ -31,7 +31,8 @@
         || comboboxValue == "PCB (Point Conseil Budget)"
         || comboboxValue == "Appel téléphonique (matin)"
         || comboboxValue == "Espace autonomie Pand@ (matin)"
-        || comboboxValue == "Prise de RDV numérique (matin)";
+        || comboboxValue == "Prise de RDV numérique (matin)"
+        || comboboxValue == "Police / Gendarmerie - Dépôt de plainte en ligne";
 
         if (event.target == document.getElementById("fp-default")) {
             if (bMorning) {
@@ -301,6 +302,16 @@
                 setComboValue("operator_action_id", 471);
 
                 setComboValue("accueil_choice", [1,3,4]);
+
+            } else if (comboboxValue == "Police / Gendarmerie - Dépôt de plainte en ligne") {
+
+                document.getElementById("check_france_service").checked = true;
+                document.getElementById("check_france_service").click();
+
+                setComboValue("operator_id", 28);
+                setComboValue("operator_action_id", 106);
+
+                setComboValue("accueil_choice", [1,4,7]);
 
                 //--------------------------- Afternoon ---------------------------//
             } else if (comboboxValue == "CAF - Déclaration des ressources") {
@@ -675,6 +686,7 @@
         combobox.add(new Option("Logement social : 1ère demande", "Logement social : 1ère demande"));
         combobox.add(new Option("MDPH - Dossier MDPH", "MDPH - Dossier MDPH"));
         combobox.add(new Option("PCB (Point Conseil Budget)", "PCB (Point Conseil Budget)"));
+        combobox.add(new Option("Police / Gendarmerie - Dépôt de plainte en ligne", "Police / Gendarmerie - Dépôt de plainte en ligne"));
         combobox.add(new Option("Retraite - Demande d'ASPA", "Retraite - Demande d'ASPA"));
         combobox.add(new Option("Retraite - Demande de retraite", "Retraite - Demande de retraite"));
         combobox.add(new Option("Retraite - Demande de réversion", "Retraite - Demande de réversion"));
